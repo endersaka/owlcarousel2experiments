@@ -1,0 +1,20 @@
+{
+  "name": "learn_owl-carousel",
+  "version": "1.0.0",
+  "description": "Learning playground for owl-carousel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "owl-carousel",
+    "playground",
+    "learn",
+    "test"
+  ],
+  "author": "Marco Frisan, ender.saka@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "owl-carousel": "^1.0.0"
+  }
+}
