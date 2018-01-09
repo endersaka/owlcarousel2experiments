@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Learn Owl Carousel</title>
+    <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="owlcarousel/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="owlcarousel/dist/assets/owl.theme.default.min.css">
+  </head>
+  <body>
+    <div class="owl-carousel">
+      <img src="node_modules/owl-carousel/demos/assets/fullimage1.jpg">
+      <img src="node_modules/owl-carousel/demos/assets/fullimage2.jpg">
+      <img src="node_modules/owl-carousel/demos/assets/fullimage3.jpg">
+      <img src="node_modules/owl-carousel/demos/assets/fullimage4.jpg">
+      <img src="node_modules/owl-carousel/demos/assets/fullimage5.jpg">
+      <img src="node_modules/owl-carousel/demos/assets/fullimage6.jpg">
+      <img src="node_modules/owl-carousel/demos/assets/fullimage7.jpg">
+    </div>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="owlcarousel/dist/owl.carousel.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        /* Ci sono ancora dei problemi nel prendere la larghezza esatta a causa delle barre di scorrimento credo. */
+        var width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        var height = Math.max(document.documentElement.clientHeight, window.innerheight || 0);
+        var wAR = width / height;
+        console.log('View width: %s; height: %s', width, height);
+
+        var changeImageDimensions = function (event) {
+          var imgs = $('.owl-carousel .owl-item img');
+          var len = imgs.length;
+
+          console.log(imgs);
+
+          imgs.each(function() {
+            var i = $(this)[0];
+            console.log(i);
+
+            var iW = i.naturalWidth;
+            var iH = i.naturalHeight;
+            var iAR = iW / iH;
+            var iSRC = i.getAttribute('src');
+            console.log('Image "%s" dimensions: ( %i px, %i px); aspect ratio: %i', iSRC, iW, iH, iAR);
+
+            var nW = 0;
+            var nH = 0;
+
+            if (iAR < 1.0) {
+              if (wAR <= iAR) {
+                nW = width;
+                nH = nW / iAR;
+              } else if (wAR > iAR) {
+                nH = height;
+                nW = nH * iAR;
+              }
+            } else if (iAR >= 1.0) {
+              if (wAR <= iAR) {
+                nH = height;
+                nW = nH * iAR;
+              } else if (wAR > iAR) {
+                nW = width;
+                nH = nW / iAR;
+              }
+            }
+
+            $('.owl-stage').css('width', (nW * len));
+            i.parentElement.style = "width: " + width + "px; height: " + height + "px;";
+            i.style = "width: " + nW + "px; height: " + nH + "px;";
+          });
+        };
+
+        var options = {
+          items: 1,
+          onInitialized: changeImageDimensions,
+          onResize: changeImageDimensions
+        };
+
+        var owl = $('.owl-carousel');
+
+        owl.owlCarousel(options);
+        console.log("owl ", owl);
+        //owl.on('initialized.owl.carousel', changeImageDimensions);
+      });
+    </script>
+  </body>
+</html>
