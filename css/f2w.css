@@ -1,0 +1,17 @@
+/* The children of '.owl-item' elements must not be drawn beyond the margins
+ of the container element, therefore we clip '.owl-item' elements. */
+.owl-item {
+  overflow: hidden;
+}
+
+/* This class is used to cententer the image element into the '.owl-item'
+ element. */
+.owl-item .f2w-center {
+  position: relative;
+  left: 50%;
+  -moz-transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}

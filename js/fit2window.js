@@ -62,8 +62,8 @@ function fit2window(event) {
 
     img.image.setAttribute('style', styleStr);
 
-    if (!img.image.classList.contains('hcenter')) {
-      img.image.classList.add('hcenter');
+    if (!img.image.classList.contains('f2w-center')) {
+      img.image.classList.add('f2w-center');
     }
   });
 
